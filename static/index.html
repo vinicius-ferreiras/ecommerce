@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Bem-vindo ao E-commerce</h1>
+    </header>
+    <main>
+        <section id="cadastro">
+            <h2>Cadastro</h2>
+            <form id="registration-form">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </section>
+        <section id="products">
+            <h2>Produtos</h2>
+            <div id="product-list"></div>
+        </section>
+        <section id="cart">
+            <h2>Carrinho</h2>
+            <div id="cart-items"></div>
+            <button id="checkout-button">Finalizar Compra</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 E-commerce</p>
+    </footer>
+</body>
+
+</html>
