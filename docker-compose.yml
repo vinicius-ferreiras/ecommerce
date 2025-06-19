@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  db_development:
+    image: postgres:latest
+    container_name: ecommerce_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ecommerce
+    expose:
+      - "5432"
+    ports:
+      - "51213:5432"
