@@ -1,43 +1,14 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import { registerUser } from "../business/userBusiness.js";
 
-const prisma = new PrismaClient();
-
-export async function register(req: Request, res: Response) {
+export async function register(req: Request, res: Response): Promise<void> {
   const { name, email, password } = req.body;
 
   try {
-    if (!name || !email || !password) {
-      return res
-        .status(400)
-        .json({ error: "Name, email, and password are required." });
-    }
-    const existingUser = await prisma.user.findUnique({
-      where: { email },
-    });
-
-    if (existingUser) {
-      return res
-        .status(400)
-        .json({ error: "User with this email already exists." });
-    }
-
-    const user = await prisma.user.create({
-      data: {
-        name,
-        email,
-        password,
-      },
-    });
-    console.log("User created:", user);
+    const user = await registerUser(name, email, password);
     res.status(201).json(user);
-  } catch (error) {
-    console.error("Error creating user:", error);
-    res
-      .status(500)
-      .json({ error: "An error occurred while creating the user." });
-  } finally {
-    await prisma.$disconnect();
+  } catch (error: Error | any) {
+    res.status(500).json({ error: error.message });
   }
 }
 

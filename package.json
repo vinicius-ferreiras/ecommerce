@@ -2,7 +2,7 @@
   "name": "ecommerce",
   "version": "1.0.0",
   "type": "module",
-  "main": "index.js",
+  "main": "src/server.ts",
   "scripts": {
     "build": "tsc",
     "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node-dev' dist/server.js",
