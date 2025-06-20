@@ -2,10 +2,9 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export async function userExists(email: string): Promise<boolean> {
+export async function findByEmail(email: string): Promise<any> {
   try {
-    const user = await prisma.user.findUnique({ where: { email } });
-    return user !== null;
+    return await prisma.user.findUnique({ where: { email } });
   } catch (error) {
     throw new Error("User existence check failed");
   } finally {

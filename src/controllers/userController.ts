@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { registerUser } from "../business/userBusiness.js";
+import { registerUser, loginUser } from "../business/userBusiness.js";
 
 export async function register(req: Request, res: Response): Promise<void> {
   const { name, email, password } = req.body;
@@ -13,5 +13,12 @@ export async function register(req: Request, res: Response): Promise<void> {
 }
 
 export async function login(req: Request, res: Response) {
-  res.send("User logged in");
+  const { email, password } = req.body;
+
+  try {
+    const token = await loginUser(email, password);
+    res.status(200).json({token});
+  } catch (error: Error | any) {
+    res.status(500).json({ error: error.message });
+  }
 }
